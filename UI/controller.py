@@ -9,7 +9,16 @@ class Controller:
         self._model = model
 
     def handleAnalizzaAeroporti(self, e):
-        pass
+        numCompagnie = self._view._txtInNumero.value
+        if numCompagnie == "":
+            self._view.create_alert(f"Devi inserire un valore minimo di compagnie aeree!")
+            return
+        try:
+            numCompagnie = int(numCompagnie)
+        except ValueError:
+            self._view.create_alert(f"Devi inserire un valore numerico!")
+            return
+        print(numCompagnie)
 
     def handleTestConnessione(self, e):
         pass
