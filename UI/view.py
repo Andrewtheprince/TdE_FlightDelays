@@ -24,18 +24,19 @@ class View(ft.UserControl):
         self._title = ft.Text("FlightDelays", color="blue", size=24)
         self._page.controls.append(self._title)
 
-        self._txtInNumero = ft.TextField(label="Minimo Compagnie aeree")
-        self._btnAnalizzaAeroporti = ft.ElevatedButton(text="Analizza Aeroporti", on_click=self._controller.handleAnalizzaAeroporti)
-        row1 = ft.Row([self._txtInNumero, self._btnAnalizzaAeroporti], alignment=MainAxisAlignment.CENTER)
+        self._txtInCMin = ft.TextField(label="Minimo Compagnie aeree")
+        self._btnAnalizza = ft.ElevatedButton(text="Analizza Aeroporti", on_click=self._controller.handleAnalizza)
+        row1 = ft.Row([ft.Container(None, width=250), ft.Container(self._txtInCMin, width=250), ft.Container(self._btnAnalizza, width=250)], alignment=MainAxisAlignment.CENTER)
 
-        self._ddAeroportoPartenza = ft.Dropdown(label="Aeroporto di partenza")
-        self._txtSpaziatore = ft.Text(f"                                         ")
+        self._ddAeroportoP = ft.Dropdown(label="Aeroporto di partenza")
+        self._btnConnessi = ft.ElevatedButton(text="Aeroporti connessi", on_click=self._controller.handleConnessi)
+        row2 = ft.Row([ft.Container(None, width=250), ft.Container(self._ddAeroportoP, width=250), ft.Container(self._btnConnessi, width=250)], alignment=MainAxisAlignment.CENTER)
 
-        row2 = ft.Row([self._ddAeroportoPartenza, self._txtSpaziatore], alignment=MainAxisAlignment.CENTER)
-        self._ddAeroportoDestinazione = ft.Dropdown(label="Aeroporto di destinazione")
-        self._btnTestConnessione = ft.ElevatedButton(text="Test Connessione", on_click=self._controller.handleTestConnessione, disabled=True)
+        self._ddAeroportoD = ft.Dropdown(label="Aeroporto di destinazione")
+        self._txtInTratteMax = ft.TextField(label="Numero tratte Max")
+        self._btnCerca = ft.ElevatedButton(text="Cerca Itinerario", on_click=self._controller.handleCerca)
+        row3 = ft.Row([ft.Container(self._ddAeroportoD, width=250), ft.Container(self._txtInTratteMax, width=250), ft.Container(self._btnCerca, width=250)],alignment=MainAxisAlignment.CENTER)
 
-        row3 = ft.Row([self._ddAeroportoDestinazione, self._btnTestConnessione],spacing=20 ,alignment=MainAxisAlignment.CENTER)
         self._page.add(row1, row2, row3)
         self.txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
         self._page.controls.append(self.txt_result)

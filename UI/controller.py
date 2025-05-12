@@ -3,13 +3,11 @@ import flet as ft
 
 class Controller:
     def __init__(self, view, model):
-        # the view, with the graphical elements of the UI
         self._view = view
-        # the model, which implements the logic of the program and holds the data
         self._model = model
 
-    def handleAnalizzaAeroporti(self, e):
-        numCompagnie = self._view._txtInNumero.value
+    def handleAnalizza(self, e):
+        numCompagnie = self._view._txtInCMin.value
         if numCompagnie == "":
             self._view.create_alert(f"Devi inserire un valore minimo di compagnie aeree!")
             return
@@ -18,7 +16,15 @@ class Controller:
         except ValueError:
             self._view.create_alert(f"Devi inserire un valore numerico!")
             return
-        print(numCompagnie)
+        self._model.buildGraph(numCompagnie)
+        self._view.txt_result.controls.append(ft.Text(f"Creato grafo con {self._model.numNodi()} nodi"))
+        airports = self._model.getNodi()
+        for a in airports:
+            self._view._ddAeroportoP.options.append(ft.dropdown.Option(a))
+        self._view.update_page()
 
-    def handleTestConnessione(self, e):
+    def handleCerca(self, e):
+        pass
+
+    def handleConnessi(self, e):
         pass
