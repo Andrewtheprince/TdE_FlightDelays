@@ -6,9 +6,9 @@ class View(ft.UserControl):
         super().__init__()
         # page stuff
         self._page = page
-        self._page.title = "Template application using MVC and DAO"
+        self._page.title = "FlightDelays"
         self._page.horizontal_alignment = 'CENTER'
-        self._page.theme_mode = ft.ThemeMode.DARK
+        self._page.theme_mode = ft.ThemeMode.LIGHT
         # controller (it is not initialized. Must be initialized in the main, after the controller is created)
         self._controller = None
         # graphical elements
@@ -20,7 +20,7 @@ class View(ft.UserControl):
 
     def load_interface(self):
         # title
-        self._title = ft.Text("Hello World", color="blue", size=24)
+        self._title = ft.Text("FlightDelays", color="blue", size=24)
         self._page.controls.append(self._title)
 
 
