@@ -51,8 +51,7 @@ class DAO:
                     order by f.ORIGIN_AIRPORT_ID, f.DESTINATION_AIRPORT_ID"""
         cursor.execute(query)
         for row in cursor:
-            if row["ORIGIN_AIRPORT_ID"] in idMap and row["DESTINATION_AIRPORT_ID"]:
-                result.append(Arco(row["ORIGIN_AIRPORT_ID"], row["DESTINATION_AIRPORT_ID"], row["n"]))
+            result.append(Arco(idMap[row["ORIGIN_AIRPORT_ID"]], idMap[row["DESTINATION_AIRPORT_ID"]], row["n"]))
         cursor.close()
         conn.close()
         return result

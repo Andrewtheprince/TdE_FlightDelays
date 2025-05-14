@@ -21,6 +21,9 @@ class Model:
     def getNodi(self):
         return self._graph.nodes
 
+    def numArchi(self):
+        return len(self._graph.edges)
+
     def addAllArchiV1(self):
         allEdges = DAO.getAllEdgesV1(self._idMapAirports)
         for e in allEdges:

@@ -17,7 +17,8 @@ class Controller:
             self._view.create_alert(f"Devi inserire un valore numerico!")
             return
         self._model.buildGraph(numCompagnie)
-        self._view.txt_result.controls.append(ft.Text(f"Creato grafo con {self._model.numNodi()} nodi"))
+        self._view.txt_result.controls.clear()
+        self._view.txt_result.controls.append(ft.Text(f"Creato grafo con {self._model.numNodi()} nodi e {self._model.numArchi()} archi!"))
         airports = self._model.getNodi()
         for a in airports:
             self._view._ddAeroportoP.options.append(ft.dropdown.Option(a))
