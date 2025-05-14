@@ -1,5 +1,6 @@
 from database.DB_connect import DBConnect
 from model.airport import Airport
+from model.arco import Arco
 
 
 class DAO:
@@ -38,3 +39,24 @@ class DAO:
         cursor.close()
         conn.close()
         return result
+
+    @staticmethod
+    def getAllEdgesV1(idMap):
+        conn = DBConnect.get_connection()
+        result = []
+        cursor = conn.cursor(dictionary=True)
+        query = """ SELECT f.ORIGIN_AIRPORT_ID, f.DESTINATION_AIRPORT_ID, count(*) as n
+                    FROM flights f
+                    group by f.ORIGIN_AIRPORT_ID, f.DESTINATION_AIRPORT_ID
+                    order by f.ORIGIN_AIRPORT_ID, f.DESTINATION_AIRPORT_ID"""
+        cursor.execute(query)
+        for row in cursor:
+            if row["ORIGIN_AIRPORT_ID"] in idMap and row["DESTINATION_AIRPORT_ID"]:
+                result.append(Arco(row["ORIGIN_AIRPORT_ID"], row["DESTINATION_AIRPORT_ID"], row["n"]))
+        cursor.close()
+        conn.close()
+        return result
+
+
+
+
