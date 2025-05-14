@@ -1,4 +1,6 @@
 import networkx as nx
+from networkx.classes import neighbors
+
 from database.DAO import DAO
 
 class Model:
@@ -33,3 +35,13 @@ class Model:
                 else:
                     self._graph.add_edge(e.aeroportoP, e.aeroportoA, weight = e.peso)
 
+    def getSortedNeighbours(self, node):
+        vicini = self._graph.neighbors(node)
+        viciniTuples = []
+        for n in vicini:
+            viciniTuples.append((n, self._graph[node][n]["weight"]))
+        viciniTuples.sort(key=lambda x: x[1])
+        return viciniTuples
+
+    def getIdMap(self):
+        return self._idMapAirports
