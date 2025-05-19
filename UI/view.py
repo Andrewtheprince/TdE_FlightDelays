@@ -26,16 +26,16 @@ class View(ft.UserControl):
 
         self._txtInCMin = ft.TextField(label="Minimo Compagnie aeree")
         self._btnAnalizza = ft.ElevatedButton(text="Analizza Aeroporti", on_click=self._controller.handleAnalizza)
-        row1 = ft.Row([ft.Container(None, width=250), ft.Container(self._txtInCMin, width=250), ft.Container(self._btnAnalizza, width=250)], alignment=MainAxisAlignment.CENTER)
+        row1 = ft.Row([ft.Container(None, width=350), ft.Container(self._txtInCMin, width=350), ft.Container(self._btnAnalizza, width=350)], alignment=MainAxisAlignment.CENTER)
 
-        self._ddAeroportoP = ft.Dropdown(label="Aeroporto di partenza")
-        self._btnConnessi = ft.ElevatedButton(text="Aeroporti connessi", on_click=self._controller.handleConnessi)
-        row2 = ft.Row([ft.Container(None, width=250), ft.Container(self._ddAeroportoP, width=250), ft.Container(self._btnConnessi, width=250)], alignment=MainAxisAlignment.CENTER)
+        self._ddAeroportoP = ft.Dropdown(label="Aeroporto di partenza", disabled = True)
+        self._btnConnessi = ft.ElevatedButton(text="Aeroporti connessi", on_click=self._controller.handleConnessi, disabled = True)
+        row2 = ft.Row([ft.Container(None, width=350), ft.Container(self._ddAeroportoP, width=350), ft.Container(self._btnConnessi, width=350)], alignment=MainAxisAlignment.CENTER)
 
-        self._ddAeroportoD = ft.Dropdown(label="Aeroporto di destinazione")
-        self._txtInTratteMax = ft.TextField(label="Numero tratte Max")
-        self._btnCerca = ft.ElevatedButton(text="Cerca Itinerario", on_click=self._controller.handleCerca)
-        row3 = ft.Row([ft.Container(self._ddAeroportoD, width=250), ft.Container(self._txtInTratteMax, width=250), ft.Container(self._btnCerca, width=250)],alignment=MainAxisAlignment.CENTER)
+        self._ddAeroportoD = ft.Dropdown(label="Aeroporto di destinazione", disabled = True)
+        self._txtInTratteMax = ft.TextField(label="Numero tratte Max", disabled = True)
+        self._btnCerca = ft.ElevatedButton(text="Cerca Itinerario", on_click=self._controller.handleCerca, disabled = True)
+        row3 = ft.Row([ft.Container(self._ddAeroportoD, width=350), ft.Container(self._txtInTratteMax, width=350), ft.Container(self._btnCerca, width=350)],alignment=MainAxisAlignment.CENTER)
 
         self._page.add(row1, row2, row3)
         self.txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
